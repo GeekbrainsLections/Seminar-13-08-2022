@@ -77,5 +77,4 @@ $ git fetch [remote-name]
 $ git push origin master
 ## Слияние веток и решение конфликтов
 
-## Удаление веток
 
