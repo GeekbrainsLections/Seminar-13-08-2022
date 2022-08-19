@@ -78,7 +78,6 @@ git remote addКоманда принимает два аргумента:
 Например:
 
 $ git remote add origin https://github.com/user/repo.git
-# Set a new remote
 
 $ git remote -v
 # Verify new remote
@@ -116,7 +115,6 @@ $ git remote -v
 $ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
 * Убедитесь, что удаленный URL-адрес изменился.
 $ git remote -v
-# Verify new remote URL
 > origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
 > origin  https://github.com/USERNAME/REPOSITORY.git (push)
 В следующий раз, когда вы git fetch, git pull, или git pushв удаленный репозиторий, вас попросят ввести имя пользователя и пароль GitHub. Когда Git предложит вам ввести пароль, введите свой личный токен доступа (PAT). Кроме того, вы можете использовать помощник по учетным данным, такой как Git Credential Manager . Аутентификация на основе пароля для Git была удалена в пользу более безопасных методов аутентификации. Для получения дополнительной информации см. раздел "Создание личного токена доступа".
@@ -134,7 +132,7 @@ $ git remote -v
 $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 5 Убедитесь, что удаленный URL-адрес изменился.
 $ git remote -v
-# Verify new remote URL
+
 > origin  git@github.com:USERNAME/REPOSITORY.git (fetch)
 > origin  git@github.com:USERNAME/REPOSITORY.git (push)
 
@@ -156,15 +154,12 @@ git remote renameКоманда принимает два аргумента:
 В этих примерах предполагается, что вы клонируете с использованием HTTPS, что рекомендуется.
 
 $ git remote -v
-# View existing remotes
 > origin  https://github.com/OWNER/REPOSITORY.git (fetch)
 > origin  https://github.com/OWNER/REPOSITORY.git (push)
 
 $ git remote rename origin destination
-# Change remote name from 'origin' to 'destination'
 
 $ git remote -v
-# Verify remote's new name
 > destination  https://github.com/OWNER/REPOSITORY.git (fetch)
 > destination  https://github.com/OWNER/REPOSITORY.git (push)
 
@@ -174,7 +169,6 @@ $ git remote -v
 Вы можете проверить, какие удаленные хранилища существуют в настоящее время, с git remote -vпомощью команды:
 
 $ git remote -v
-# View existing remotes
 > origin  https://github.com/OWNER/REPOSITORY.git (fetch)
 > origin  https://github.com/OWNER/REPOSITORY.git (push)
 
@@ -193,16 +187,13 @@ git remote rmКоманда принимает один аргумент:
 В этих примерах предполагается, что вы клонируете с использованием HTTPS, что рекомендуется.
 
 $ git remote -v
-# View current remotes
 > origin  https://github.com/OWNER/REPOSITORY.git (fetch)
 > origin  https://github.com/OWNER/REPOSITORY.git (push)
 > destination  https://github.com/FORKER/REPOSITORY.git (fetch)
 > destination  https://github.com/FORKER/REPOSITORY.git (push)
 
 $ git remote rm destination
-# Remove remote
 $ git remote -v
-# Verify it's gone
 > origin  https://github.com/OWNER/REPOSITORY.git (fetch)
 > origin  https://github.com/OWNER/REPOSITORY.git (push)
 Примечание: git remote rmне удаляет удаленный репозиторий с сервера. Он просто удаляет удаленный и его ссылки из вашего локального репозитория.
