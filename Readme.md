@@ -50,7 +50,7 @@
 После merge в файле появятся куски из обеих сливаемых версий, как-то так:
 <<<<<<< HEAD
 содержимое файла из первой ветки
-======
+= = = = =
 содержимое файла из второй ветки
 >>>>>>> otherbranch
 
@@ -80,7 +80,6 @@ git remote addКоманда принимает два аргумента:
 $ git remote add origin https://github.com/user/repo.git
 
 $ git remote -v
-# Verify new remote
 > origin  https://github.com/user/repo.git (fetch)
 > origin  https://github.com/user/repo.git (push)
 ## Устранение неполадок: удаленный источник уже существует
