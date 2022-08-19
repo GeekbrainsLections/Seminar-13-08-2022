@@ -67,3 +67,149 @@ git commit -m "added theirs"
 
 ## Удаление веток
 Для удаления веток используетя команда *git branch -d <название ветки>*.
+
+## Добавление удаленного репозитория
+Чтобы добавить новый удаленный, используйте git remote addкоманду на терминале в каталоге, в котором хранится ваш репозиторий.
+
+git remote addКоманда принимает два аргумента:
+
+Например, удаленное имя, origin
+Например, удаленный URL-адрес, https://github.com/user/repo.git
+Например:
+
+$ git remote add origin https://github.com/user/repo.git
+# Set a new remote
+
+$ git remote -v
+# Verify new remote
+> origin  https://github.com/user/repo.git (fetch)
+> origin  https://github.com/user/repo.git (push)
+## Устранение неполадок: удаленный источник уже существует
+Эта ошибка означает, что вы пытались добавить удаленный сервер с именем, которое уже существует в вашем локальном репозитории.
+
+$ git remote add origin https://github.com/octocat/Spoon-Knife.git
+> fatal: remote origin already exists.
+Чтобы исправить это, вы можете:
+
+Используйте другое имя для нового удаленного.
+Перед добавлением нового удаленного репозитория переименуйте существующий удаленный репозиторий. Для получения дополнительной информации см. раздел "Переименование удаленного репозитория" ниже.
+Удалите существующий удаленный репозиторий перед добавлением нового удаленного. Для получения дополнительной информации см. раздел "Удаление удаленного репозитория" ниже.
+## Изменение URL-адреса удаленного репозитория
+git remote set-urlКоманда изменяет существующий URL удаленного репозитория.
+
+git remote set-urlКоманда принимает два аргумента:
+
+Существующее удаленное имя. Например, originили upstream- два распространенных варианта.
+Новый URL-адрес для удаленного хранилища. Например:
+Если вы обновляетесь для использования HTTPS, ваш URL-адрес может выглядеть следующим образом:
+https://github.com/USERNAME/REPOSITORY.git
+Если вы обновляетесь для использования SSH, ваш URL-адрес может выглядеть следующим образом:
+git@github.com:USERNAME/REPOSITORY.git
+Переключение удаленных URL-адресов с SSH на HTTPS
+* Откройте Git Bash.
+* Измените текущий рабочий каталог на свой локальный проект.
+* Перечислите существующие удаленные устройства, чтобы получить имя удаленного, которое вы хотите изменить.
+$ git remote -v
+> origin  git@github.com:USERNAME/REPOSITORY.git (fetch)
+> origin  git@github.com:USERNAME/REPOSITORY.git (push)
+* Измените URL-адрес вашего удаленного устройства с SSH на HTTPS с git remote set-urlпомощью команды.
+$ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+* Убедитесь, что удаленный URL-адрес изменился.
+$ git remote -v
+# Verify new remote URL
+> origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
+> origin  https://github.com/USERNAME/REPOSITORY.git (push)
+В следующий раз, когда вы git fetch, git pull, или git pushв удаленный репозиторий, вас попросят ввести имя пользователя и пароль GitHub. Когда Git предложит вам ввести пароль, введите свой личный токен доступа (PAT). Кроме того, вы можете использовать помощник по учетным данным, такой как Git Credential Manager . Аутентификация на основе пароля для Git была удалена в пользу более безопасных методов аутентификации. Для получения дополнительной информации см. раздел "Создание личного токена доступа".
+
+Вы можете использовать помощник по учетным данным, чтобы Git запоминал ваше имя пользователя на GitHub и личный токен доступа каждый раз, когда он общается с GitHub.
+
+## Переключение удаленных URL-адресов с HTTPS на SSH
+1 Откройте Git Bash.
+2 Измените текущий рабочий каталог на свой локальный проект.
+3 Перечислите существующие удаленные устройства, чтобы получить имя удаленного, которое вы хотите изменить.
+$ git remote -v
+> origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
+> origin  https://github.com/USERNAME/REPOSITORY.git (push)
+4 Измените URL-адрес вашего удаленного устройства с HTTPS на SSH с git remote set-urlпомощью команды.
+$ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+5 Убедитесь, что удаленный URL-адрес изменился.
+$ git remote -v
+# Verify new remote URL
+> origin  git@github.com:USERNAME/REPOSITORY.git (fetch)
+> origin  git@github.com:USERNAME/REPOSITORY.git (push)
+
+## Устранение неполадок: нет такого удаленного "[имя]"
+Эта ошибка означает, что удаленный, который вы пытались изменить, не существует:
+
+$ git remote set-url sofake https://github.com/octocat/Spoon-Knife
+> fatal: No such remote 'sofake'
+Убедитесь, что вы правильно ввели удаленное имя.
+
+## Переименование удаленного репозитория
+Используйте git remote renameкоманду для переименования существующего удаленного хранилища.
+
+git remote renameКоманда принимает два аргумента:
+
+Например, существующее удаленное имя, origin
+Например, новое имя для удаленного хранилища, destination
+Пример
+В этих примерах предполагается, что вы клонируете с использованием HTTPS, что рекомендуется.
+
+$ git remote -v
+# View existing remotes
+> origin  https://github.com/OWNER/REPOSITORY.git (fetch)
+> origin  https://github.com/OWNER/REPOSITORY.git (push)
+
+$ git remote rename origin destination
+# Change remote name from 'origin' to 'destination'
+
+$ git remote -v
+# Verify remote's new name
+> destination  https://github.com/OWNER/REPOSITORY.git (fetch)
+> destination  https://github.com/OWNER/REPOSITORY.git (push)
+
+## Устранение неполадок: не удалось переименовать раздел конфигурации 'удаленный.[старое имя] "удаленному".[новое имя]'
+Эта ошибка означает, что старое введенное вами удаленное имя не существует.
+
+Вы можете проверить, какие удаленные хранилища существуют в настоящее время, с git remote -vпомощью команды:
+
+$ git remote -v
+# View existing remotes
+> origin  https://github.com/OWNER/REPOSITORY.git (fetch)
+> origin  https://github.com/OWNER/REPOSITORY.git (push)
+
+## Устранение неполадок: Remote [новое имя] уже существует
+Эта ошибка означает, что удаленное имя, которое вы хотите использовать, уже существует. Чтобы решить эту проблему, либо используйте другое удаленное имя, либо переименуйте исходный удаленный.
+
+## Удаление удаленного репозитория
+Используйте git remote rmкоманду для удаления удаленного URL-адреса из вашего репозитория.
+
+git remote rmКоманда принимает один аргумент:
+
+Например, удаленное имя, destination
+Удаление удаленного URL-адреса из вашего репозитория только разблокирует локальные и удаленные репозитории. Это не удаляет удаленный репозиторий.
+
+Пример
+В этих примерах предполагается, что вы клонируете с использованием HTTPS, что рекомендуется.
+
+$ git remote -v
+# View current remotes
+> origin  https://github.com/OWNER/REPOSITORY.git (fetch)
+> origin  https://github.com/OWNER/REPOSITORY.git (push)
+> destination  https://github.com/FORKER/REPOSITORY.git (fetch)
+> destination  https://github.com/FORKER/REPOSITORY.git (push)
+
+$ git remote rm destination
+# Remove remote
+$ git remote -v
+# Verify it's gone
+> origin  https://github.com/OWNER/REPOSITORY.git (fetch)
+> origin  https://github.com/OWNER/REPOSITORY.git (push)
+Примечание: git remote rmне удаляет удаленный репозиторий с сервера. Он просто удаляет удаленный и его ссылки из вашего локального репозитория.
+
+## Устранение неполадок: не удалось удалить раздел конфигурации 'remote.[имя]'
+Эта ошибка означает, что удаленный, который вы пытались удалить, не существует:
+
+$ git remote rm sofake
+> error: Could not remove config section 'remote.sofake'
+Убедитесь, что вы правильно ввели удаленное имя.
